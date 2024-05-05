@@ -1,15 +1,14 @@
 .all_projects_container {
-    width: 80%;
     height: 18vw;
     perspective: 500px;
     display: flex;
+    justify-content: center;
     margin: 3% 0;
     perspective: 500px;
     transition: 1s;
     position: relative;
 
     &:hover {
-        width: 85%;
         height: 20vw;
     }
 

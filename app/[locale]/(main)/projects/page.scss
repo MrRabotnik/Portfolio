@@ -16,6 +16,23 @@
     justify-content: space-evenly;
     min-height: 100vh;
     padding-top: 70px;
+
+    .container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .project-box-skeleton {
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 20px;
+
+            span {
+                height: 20vw;
+                border-radius: 20px;
+            }
+        }
+    }
 }
 
 /*
