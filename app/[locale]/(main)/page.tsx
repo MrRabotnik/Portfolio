@@ -17,13 +17,12 @@ const Skeleton = dynamic(() => import("react-loading-skeleton"));
 
 export default function Home() {
     const localActive = useLocale();
-    const [previewingProject, setPreviewingProject] = useState<any>({});
 
     const [itemOffSet, setItemOffSet] = useState(0);
-
     const itemCount = 5;
 
     const [projects, setProjects] = useState<any>([]);
+    const [previewingProject, setPreviewingProject] = useState<any>({});
     const [limitedProjects, setLimitedProjects] = useState([]);
 
     useEffect(() => {
@@ -117,32 +116,48 @@ export default function Home() {
                         />
                     )}
 
-                    {projects.length ? (
-                        <div className="project-information">
-                            <h3 className="project-title">{projects[itemOffSet + 2].name}</h3>
-                            <div>
-                                <h4>
-                                    Creation Time | <span>{projects[itemOffSet + 2].creationTime}</span>{" "}
-                                </h4>
-                                <h4>
-                                    Technologies Used | <span>{projects[itemOffSet + 2].technologies}</span>
-                                </h4>
-                                <h4>
-                                    Category | <span>{projects[itemOffSet + 2].category}</span>
-                                </h4>
-                            </div>
-
-                            <button className="view-preview">
-                                <a href={projects[itemOffSet + 2].link}>Preview</a>
-                            </button>
+                    <div className="project-information">
+                        <h3 className="project-title">{previewingProject.name}</h3>
+                        <div>
+                            <h4>
+                                Creation Time |{" "}
+                                {Object.keys(previewingProject).length ? (
+                                    <span>{previewingProject.creationTime}</span>
+                                ) : (
+                                    <Skeleton
+                                        highlightColor="#438a5e"
+                                        containerClassName="project-info-box-skeleton"
+                                    />
+                                )}
+                            </h4>
+                            <h4>
+                                Technologies Used |{" "}
+                                {Object.keys(previewingProject).length ? (
+                                    <span>{previewingProject.technologies}</span>
+                                ) : (
+                                    <Skeleton
+                                        highlightColor="#438a5e"
+                                        containerClassName="project-info-box-skeleton"
+                                    />
+                                )}
+                            </h4>
+                            <h4>
+                                Category |{" "}
+                                {Object.keys(previewingProject).length ? (
+                                    <span>{previewingProject.category}</span>
+                                ) : (
+                                    <Skeleton
+                                        highlightColor="#438a5e"
+                                        containerClassName="project-info-box-skeleton"
+                                    />
+                                )}
+                            </h4>
                         </div>
-                    ) : (
-                        <Skeleton
-                            style={{ height: "100%" }}
-                            highlightColor="#438a5e"
-                            containerClassName="project-info-box-skeleton"
-                        />
-                    )}
+
+                        <button className="view-preview">
+                            <a href={previewingProject.link}>Preview</a>
+                        </button>
+                    </div>
                 </div>
 
                 <div
@@ -207,16 +222,15 @@ export default function Home() {
                 <div className="skills_box_container">
                     <div className="skill_box">
                         <div className="skills_container">
-                            <h4>Html</h4>
-                            <h4>Css</h4>
-                            <h4>JavaScript(jQuery)</h4>
+                            <h4>HTML</h4>
+                            <h4>CSS/SCSS</h4>
+                            <h4>JavaScript</h4>
                             <h4>Python</h4>
                             <h4>PHP</h4>
                             <h4>React JS/Vue JS</h4>
-                            <h4>OOP and MVC</h4>
-                            <h4>AJAX</h4>
+                            <h4>Next.js</h4>
                             <h4>SQL, MySQL</h4>
-                            <h4>Node.Js/Java</h4>
+                            <h4>Node.Js/MongoDB</h4>
                         </div>
                         <div className="skill_box_cover_img">Programming Skills</div>
                     </div>
@@ -226,7 +240,7 @@ export default function Home() {
                             <h4>
                                 Very Creative
                                 <br />
-                                (As you can see... :D)
+                                (As you can see... 🫡)
                             </h4>
                             <h4>Negotiation Skills</h4>
                             <h4>Hard Worker</h4>
@@ -242,10 +256,9 @@ export default function Home() {
                             <h4>Singing</h4>
                             <h4>Drawing</h4>
                             <h4>Dancing</h4>
-                            <h4>Playing</h4>
+                            <h4>PC gaming</h4>
                             <h4>Sports</h4>
                             <h4>Music</h4>
-                            <h4>Fitness</h4>
                             <h4>Learning stuff</h4>
                         </div>
                         <div className="skill_box_cover_img">Hobbies</div>
