@@ -54,22 +54,24 @@ export default function Home() {
     return (
         <main>
             <section className="home-section">
-                <div
-                    className="introduction"
-                    data-aos="fade-right"
-                    data-aos-duration="1000"
-                >
-                    Hello, My name is <b>Sargis</b>
-                    <br /> I am a Web Develoer and Designer,Problem Solver, also I am developing games just for fun and
-                    experience, but the most important one...a person with humor :)
-                </div>
-                <div>
-                    <Image
-                        className="profile-image"
-                        src={IMAGES.pfp}
-                        alt="Profile Image"
-                        priority
-                    />
+                <div className="container">
+                    <div
+                        className="introduction"
+                        data-aos="fade-right"
+                        data-aos-duration="1000"
+                    >
+                        Hello, My name is <b>Sargis</b>
+                        <br /> I am a Full Stack Software Develoer, Problem Solver. Also I am developing web/desktop
+                        games just for fun and experience, but the most important one...a person with humor :)
+                    </div>
+                    <div>
+                        <Image
+                            className="profile-image"
+                            src={IMAGES.pfp}
+                            alt="Profile Image"
+                            priority
+                        />
+                    </div>
                 </div>
             </section>
 
@@ -79,118 +81,121 @@ export default function Home() {
             <div className="section-heading">My Projects</div>
 
             <section className="my-projects-section">
-                <div className="my-projects-information-container">
-                    {projects.length ? (
-                        <div
-                            className="preview-box"
-                            data-aos="fade-right"
-                            data-aos-duration="1000"
-                        >
+                <div className="container">
+                    <div className="my-projects-information-container">
+                        {projects.length ? (
                             <div
-                                className="left-arrow-container"
-                                onClick={previousProject}
+                                className="preview-box"
+                                data-aos="fade-right"
+                                data-aos-duration="1000"
                             >
-                                <FontAwesomeIcon icon={faArrowLeft} />
+                                <div
+                                    className="left-arrow-container"
+                                    onClick={previousProject}
+                                >
+                                    <FontAwesomeIcon icon={faArrowLeft} />
+                                </div>
+                                <div className="preview-img-box">
+                                    <Image
+                                        width={100}
+                                        height={100}
+                                        src={projects[itemOffSet + 2].previewImage}
+                                        alt="Project"
+                                        priority
+                                    />
+                                </div>
+
+                                <div
+                                    className="right-arrow-container"
+                                    onClick={nextProject}
+                                >
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </div>
                             </div>
-                            <div className="preview-img-box">
-                                <Image
-                                    width={100}
-                                    height={100}
-                                    src={projects[itemOffSet + 2].previewImage}
-                                    alt="Project"
-                                    priority
-                                />
+                        ) : (
+                            <Skeleton
+                                highlightColor="#96bb7c"
+                                containerClassName="project-preview-box-skeleton"
+                            />
+                        )}
+
+                        <div className="project-information">
+                            <h3 className="project-title">{previewingProject.name}</h3>
+                            <div>
+                                <h4>
+                                    Creation Time |{" "}
+                                    {Object.keys(previewingProject).length ? (
+                                        <span>{previewingProject.creationTime}</span>
+                                    ) : (
+                                        <Skeleton
+                                            highlightColor="#96bb7c"
+                                            containerClassName="project-info-box-skeleton"
+                                        />
+                                    )}
+                                </h4>
+                                <h4>
+                                    Technologies Used |{" "}
+                                    {Object.keys(previewingProject).length ? (
+                                        <span>{previewingProject.technologies}</span>
+                                    ) : (
+                                        <Skeleton
+                                            highlightColor="#96bb7c"
+                                            containerClassName="project-info-box-skeleton"
+                                        />
+                                    )}
+                                </h4>
+                                <h4>
+                                    Category |{" "}
+                                    {Object.keys(previewingProject).length ? (
+                                        <span>{previewingProject.category}</span>
+                                    ) : (
+                                        <Skeleton
+                                            highlightColor="#96bb7c"
+                                            containerClassName="project-info-box-skeleton"
+                                        />
+                                    )}
+                                </h4>
                             </div>
 
-                            <div
-                                className="right-arrow-container"
-                                onClick={nextProject}
-                            >
-                                <FontAwesomeIcon icon={faArrowRight} />
-                            </div>
+                            <button className="view-preview">
+                                <a href={previewingProject.link}>Preview</a>
+                            </button>
                         </div>
-                    ) : (
-                        <Skeleton
-                            highlightColor="#438a5e"
-                            containerClassName="project-preview-box-skeleton"
-                        />
-                    )}
-
-                    <div className="project-information">
-                        <h3 className="project-title">{previewingProject.name}</h3>
-                        <div>
-                            <h4>
-                                Creation Time |{" "}
-                                {Object.keys(previewingProject).length ? (
-                                    <span>{previewingProject.creationTime}</span>
-                                ) : (
-                                    <Skeleton
-                                        highlightColor="#438a5e"
-                                        containerClassName="project-info-box-skeleton"
-                                    />
-                                )}
-                            </h4>
-                            <h4>
-                                Technologies Used |{" "}
-                                {Object.keys(previewingProject).length ? (
-                                    <span>{previewingProject.technologies}</span>
-                                ) : (
-                                    <Skeleton
-                                        highlightColor="#438a5e"
-                                        containerClassName="project-info-box-skeleton"
-                                    />
-                                )}
-                            </h4>
-                            <h4>
-                                Category |{" "}
-                                {Object.keys(previewingProject).length ? (
-                                    <span>{previewingProject.category}</span>
-                                ) : (
-                                    <Skeleton
-                                        highlightColor="#438a5e"
-                                        containerClassName="project-info-box-skeleton"
-                                    />
-                                )}
-                            </h4>
-                        </div>
-
-                        <button className="view-preview">
-                            <a href={previewingProject.link}>Preview</a>
-                        </button>
                     </div>
-                </div>
 
-                <div
-                    className="my-projects-box"
-                    data-aos="zoom-in"
-                    data-aos-duration="1000"
-                >
-                    {limitedProjects.length
-                        ? limitedProjects.map((project: any, index: number) => {
-                              return (
-                                  <div
-                                      key={index}
-                                      className={`project-boxes box-${index + 1}`}
-                                  >
-                                      <Image
-                                          width={100}
-                                          height={100}
-                                          src={project.previewImage}
-                                          alt="Preview Image"
+                    <div
+                        className="my-projects-box"
+                        data-aos="zoom-in"
+                        data-aos-duration="1000"
+                    >
+                        {limitedProjects.length
+                            ? limitedProjects.map((project: any, index: number) => {
+                                  return (
+                                      <div
+                                          key={index}
+                                          className={`project-boxes box-${index + 1}`}
+                                      >
+                                          <Image
+                                              width={100}
+                                              height={100}
+                                              src={project.previewImage}
+                                              alt="Preview Image"
+                                              priority
+                                          />
+                                      </div>
+                                  );
+                              })
+                            : [1, 2, 3, 4, 5].map((index) => {
+                                  return (
+                                      <Skeleton
+                                          key={index}
+                                          style={{ height: "100%" }}
+                                          highlightColor="#96bb7c"
+                                          containerClassName={`project-boxes box-${index} project-preview-slider-skeleton`}
                                       />
-                                  </div>
-                              );
-                          })
-                        : [1, 2, 3, 4, 5].map((index) => {
-                              return (
-                                  <Skeleton
-                                      key={index}
-                                      style={{ height: "100%" }}
-                                      highlightColor="#438a5e"
-                                      containerClassName={`project-boxes box-${index} project-preview-slider-skeleton`}
-                                  />
-                              );
-                          })}
+                                  );
+                              })}
+                    </div>
                 </div>
 
                 <div className="view-all-projects-container">
@@ -215,6 +220,7 @@ export default function Home() {
                         <Image
                             src={IMAGES.eyeIcon}
                             alt="Eye Icon"
+                            priority
                         />
                     </div>
                 </div>
@@ -231,6 +237,7 @@ export default function Home() {
                             <h4>Next.js</h4>
                             <h4>SQL, MySQL</h4>
                             <h4>Node.Js/MongoDB</h4>
+                            <h4>and more...</h4>
                         </div>
                         <div className="skill_box_cover_img">Programming Skills</div>
                     </div>
@@ -247,6 +254,7 @@ export default function Home() {
                             <h4>Communicable</h4>
                             <h4>Team Worker</h4>
                             <h4>Reliable and Honest</h4>
+                            <h4>and more...</h4>
                         </div>
                         <div className="skill_box_cover_img">Social Skills</div>
                     </div>
@@ -260,6 +268,7 @@ export default function Home() {
                             <h4>Sports</h4>
                             <h4>Music</h4>
                             <h4>Learning stuff</h4>
+                            <h4>and more...</h4>
                         </div>
                         <div className="skill_box_cover_img">Hobbies</div>
                     </div>
@@ -268,26 +277,31 @@ export default function Home() {
                     src={IMAGES.cornerSpiderWeb}
                     id="corner_spider_web"
                     alt="corner_spider_web"
+                    priority
                 />
                 <Image
                     src={IMAGES.cornerWeb}
                     id="corner-web"
                     alt="corner-web"
+                    priority
                 />
                 <Image
                     src={IMAGES.cornerWeb}
                     id="corner-web2"
                     alt="corner-web"
+                    priority
                 />
                 <Image
                     src={IMAGES.spider}
                     id="spider"
                     alt="spider"
+                    priority
                 />
                 <Image
                     src={IMAGES.lamp}
                     id="lamp"
                     alt="lamp"
+                    priority
                 />
             </section>
         </main>

@@ -6,9 +6,9 @@
 //==============================================================================================
 */
 .all_projects_section {
-    background-image: url("../../../../assets/Backgrounds/architecture-bridge-connection-dawn-417054.jpg");
-    background-size: 100%;
-    /* background-repeat: no-repeat; */
+    background-image: url("../../../../assets/Backgrounds/projects-bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     display: flex;
     align-items: center;
@@ -41,6 +41,7 @@
     .navigation_through_site img {
         margin: 0 5%;
         width: 7%;
+        height: auto;
     }
     .navigation_links {
         display: none;

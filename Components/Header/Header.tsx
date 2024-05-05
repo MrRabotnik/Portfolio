@@ -1,37 +1,81 @@
-import Image from "next/image";
-import React from "react";
+"use client";
 
 import "./Header.scss";
-import IMAGES from "../../utils/images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useState } from "react";
+import { useLocale } from "next-intl";
 
 const Header = () => {
+    const localActive = useLocale();
+
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
     return (
-        <header className="header">
-            <div className="logo-container">
-                <div className="hello-world">Hello World!</div>
-            </div>
-            <div className="navigation-through-site">
-                <div className="navigation-links">
-                    <Link href="/">Home</Link>
+        <>
+            {mobileMenuOpen ? (
+                <aside className="mobile-menu">
+                    <div
+                        className="close-mobile-menu"
+                        onClick={() => {
+                            setMobileMenuOpen(false);
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faX} />
+                    </div>
+                    <div className="navigation-links">
+                        <Link href={"/"}>Home</Link>
+                    </div>
+                    <div className="navigation-links">
+                        <Link href={`/${localActive}/projects`}>My Projects</Link>
+                    </div>
+                    <div className="navigation-links">
+                        <Link
+                            href={`../../public/My-Resume.pdf`}
+                            download={`../../public/My-Resume.pdf`}
+                        >
+                            Download CV
+                        </Link>
+                    </div>
+                    <div className="navigation-links last-link">
+                        <Link href={`/${localActive}/contact-me`}>Contact Me</Link>
+                    </div>
+                </aside>
+            ) : (
+                ""
+            )}
+
+            <header className="header">
+                <div className="container">
+                    <div className="logo-container">
+                        <div className="hello-world">Hello World!</div>
+                    </div>
+                    <div className="navigation-through-site">
+                        <div className="navigation-links">
+                            <Link href={"/"}>Home</Link>
+                        </div>
+                        <div className="navigation-links">
+                            <Link href={`/${localActive}/projects`}>My Projects</Link>
+                        </div>
+                        <div className="navigation-links">
+                            <Link href={`../../My-Resume.pdf`}>Download CV</Link>
+                        </div>
+                        <div className="navigation-links last-link">
+                            <Link href={`/${localActive}/contact-me`}>Contact Me</Link>
+                        </div>
+                        <div
+                            className="hamburger-menu"
+                            onClick={() => {
+                                setMobileMenuOpen(true);
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+                        </div>
+                    </div>
                 </div>
-                <div className="navigation-links">My Projects</div>
-                <div className="navigation-links">Skills</div>
-                <div className="navigation-links">Resume</div>
-                <div className="navigation-links">Contact Me</div>
-                <div className="hamburger-menu">
-                    <FontAwesomeIcon icon={faHamburger}></FontAwesomeIcon>
-                </div>
-                <Image
-                    src={IMAGES.playButton}
-                    alt={"Play Button"}
-                    priority
-                    className="volume-btn"
-                />
-            </div>
-        </header>
+            </header>
+        </>
     );
 };
 

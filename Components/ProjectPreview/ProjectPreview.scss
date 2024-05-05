@@ -71,7 +71,9 @@
     width: 50%;
     transform-origin: 100% 50%;
     transform: rotateY(-120deg);
-    background: linear-gradient(to right, #438a5e, #96bb7c);
+    // background: linear-gradient(to right, #438a5e, #96bb7c);
+    background: linear-gradient(to left, rgb(17, 9, 68) 20%, rgb(20, 2, 138) 70%, transparent);
+
     opacity: 0;
     color: white;
     font-size: 1vw;
@@ -122,5 +124,5 @@
     color: whitesmoke;
     font-size: 3vw;
     transform: translate(0, -50%);
-    text-shadow: 0 0 1.5vw indigo;
+    text-shadow: 3px 3px 5px rgb(41, 0, 71);
 }
