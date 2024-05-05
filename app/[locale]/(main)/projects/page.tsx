@@ -49,6 +49,10 @@ const ProjectsPage = () => {
                             highlightColor="rgb(58, 39, 183)"
                             containerClassName="project-box-skeleton"
                         />
+                        <Skeleton
+                            highlightColor="rgb(58, 39, 183)"
+                            containerClassName="project-box-skeleton"
+                        />
                     </>
                 )}
             </div>

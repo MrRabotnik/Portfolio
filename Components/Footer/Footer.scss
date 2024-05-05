@@ -7,3 +7,10 @@ footer {
     color: white;
     background: linear-gradient(to right, #96bb7c, #184d47);
 }
+
+@media only screen and (max-width: 769px) {
+    footer {
+        height: auto;
+        padding: 10px 0;
+    }
+}

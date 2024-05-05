@@ -32,7 +32,9 @@ const ProjectPreview = ({ project }: any) => {
                     <button>Preview</button>
                 </Link>
             </div>
-            <div className="title">{project.name}</div>
+            <div className="title">
+                <div className="title-text">{project.name}</div>
+            </div>
         </div>
     );
 };

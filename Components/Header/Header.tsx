@@ -25,21 +25,45 @@ const Header = () => {
                         <FontAwesomeIcon icon={faX} />
                     </div>
                     <div className="navigation-links">
-                        <Link href={"/"}>Home</Link>
+                        <Link
+                            href={"/"}
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                            }}
+                        >
+                            Home
+                        </Link>
                     </div>
                     <div className="navigation-links">
-                        <Link href={`/${localActive}/projects`}>My Projects</Link>
+                        <Link
+                            href={`/${localActive}/projects`}
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                            }}
+                        >
+                            My Projects
+                        </Link>
                     </div>
                     <div className="navigation-links">
                         <Link
                             href={`../../public/My-Resume.pdf`}
                             download={`../../public/My-Resume.pdf`}
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                            }}
                         >
                             Download CV
                         </Link>
                     </div>
                     <div className="navigation-links last-link">
-                        <Link href={`/${localActive}/contact-me`}>Contact Me</Link>
+                        <Link
+                            href={`/${localActive}/contact-me`}
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                            }}
+                        >
+                            Contact Me
+                        </Link>
                     </div>
                 </aside>
             ) : (
@@ -62,7 +86,14 @@ const Header = () => {
                             <Link href={`../../My-Resume.pdf`}>Download CV</Link>
                         </div>
                         <div className="navigation-links last-link">
-                            <Link href={`/${localActive}/contact-me`}>Contact Me</Link>
+                            <Link
+                                href={`/${localActive}/contact-me`}
+                                onClick={() => {
+                                    setMobileMenuOpen(false);
+                                }}
+                            >
+                                Contact Me
+                            </Link>
                         </div>
                         <div
                             className="hamburger-menu"

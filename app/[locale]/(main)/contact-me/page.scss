@@ -1,51 +1,111 @@
 .contact-me-section {
     height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 40px 0;
+    background-color: rgba(12, 12, 80, 0.848);
+    color: white;
 
-    .contact-me-modal {
-        width: 40%;
-        height: 80%;
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        .form {
-            .label-input-container {
-                margin: 10px 0;
+        .contact-me-modal {
+            width: 40%;
+            height: 80%;
 
-                label {
-                    display: block;
-                    margin-bottom: 10px;
+            .form {
+                .label-input-container {
+                    margin: 10px 0;
+
+                    label {
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        width: 100%;
+                        border-radius: 20px;
+                        outline: none;
+                        padding: 10px 20px;
+                        box-sizing: border-box;
+                    }
+
+                    textarea {
+                        width: 100%;
+                        border-radius: 20px;
+                        outline: none;
+                        padding: 10px 20px;
+                        resize: none;
+                        min-height: 100px;
+                        font-family: inherit;
+                        box-sizing: border-box;
+                    }
                 }
 
-                input {
-                    width: 100%;
-                    border-radius: 20px;
-                    outline: none;
-                    padding: 10px 20px;
-                }
+                .submit-mail-btn-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 10px 0;
 
-                textarea {
-                    width: 100%;
-                    border-radius: 20px;
-                    outline: none;
-                    padding: 10px 20px;
-                    resize: none;
-                    min-height: 100px;
-                    font-family: inherit;
+                    button {
+                        padding: 10px 15px;
+                        outline: none;
+                        border-radius: 20px;
+                    }
                 }
             }
+        }
+    }
+}
 
-            .submit-mail-btn-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 10px 0;
+@media only screen and (max-width: 769px) {
+    .contact-me-section {
+        .container {
+            .contact-me-modal {
+                width: 100%;
+                height: auto;
 
-                button {
-                    padding: 10px 15px;
-                    outline: none;
-                    border-radius: 20px;
+                .form {
+                    .label-input-container {
+                        margin: 10px 0;
+
+                        label {
+                            display: block;
+                            margin-bottom: 10px;
+                        }
+
+                        input {
+                            width: 100%;
+                            border-radius: 20px;
+                            outline: none;
+                            padding: 10px 20px;
+                        }
+
+                        textarea {
+                            width: 100%;
+                            border-radius: 20px;
+                            outline: none;
+                            padding: 10px 20px;
+                            resize: none;
+                            min-height: 100px;
+                            font-family: inherit;
+                        }
+                    }
+
+                    .submit-mail-btn-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 10px 0;
+
+                        button {
+                            padding: 10px 15px;
+                            outline: none;
+                            border-radius: 20px;
+                        }
+                    }
                 }
             }
         }

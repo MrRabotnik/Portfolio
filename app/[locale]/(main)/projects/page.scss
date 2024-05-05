@@ -13,9 +13,10 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-evenly;
-    min-height: 100vh;
-    padding-top: 70px;
+    // justify-content: space-evenly;
+    min-height: 91vh;
+    padding-top: 80px;
+    padding-bottom: 40px;
 
     .container {
         display: flex;
@@ -44,51 +45,22 @@
 */
 
 @media only screen and (max-width: 700px) {
-    .header {
-        height: 10vw;
-    }
-    .logo_container {
-        justify-content: center;
-        font-size: 5vw;
-    }
-    .navigation_through_site {
-        height: 100%;
-        justify-content: center;
-    }
-    .navigation_through_site img {
-        margin: 0 5%;
-        width: 7%;
-        height: auto;
-    }
-    .navigation_links {
-        display: none;
-    }
-    .hamburger_menu {
-        display: flex;
-    }
-    .all_projects_container {
-        width: 80%;
-        height: 18vw;
-        transition: 1s;
-        position: relative;
-        margin: 1% 0;
-    }
-    .all_projects_container:hover {
-        width: 90%;
-        border-radius: 5vw;
-        box-shadow: 0 0 2vw whitesmoke;
-    }
-    .project_box {
-        transition: 0.7s;
-        transform: rotateY(0deg);
-        border-radius: 5vw 0 0 5vw;
-        box-shadow: none;
-        width: 50%;
-        overflow: hidden;
-        position: relative;
-        transform: rotateX(0deg);
-    }
-    .description_box h3 {
-        font-size: 1.8vw !important;
+    .all_projects_section {
+        background-image: none;
+        background-color: rgba(12, 12, 80, 0.848);
+        padding-top: 100px;
+
+        .container {
+            .project-box-skeleton {
+                width: 100%;
+                margin-bottom: 30px;
+                border-radius: 20px;
+
+                span {
+                    height: 30vw;
+                    border-radius: 20px;
+                }
+            }
+        }
     }
 }

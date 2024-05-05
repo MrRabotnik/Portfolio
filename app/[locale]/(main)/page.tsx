@@ -42,13 +42,23 @@ export default function Home() {
     }, []);
 
     const previousProject = () => {
+        if (itemOffSet === 0) {
+            // setItemOffSet(projects.length - 1);
+            return;
+        }
         setItemOffSet((prev) => prev - 1);
         setLimitedProjects(projects.slice(itemOffSet - 1, itemOffSet - 1 + 5));
+        setPreviewingProject(projects[itemOffSet + 1]);
     };
 
     const nextProject = () => {
+        if (itemOffSet === projects.length - 1) {
+            // setItemOffSet(0);
+            return;
+        }
         setItemOffSet((prev) => prev + 1);
         setLimitedProjects(projects.slice(itemOffSet + 1, itemOffSet + 1 + 5));
+        setPreviewingProject(projects[itemOffSet + 3]);
     };
 
     return (
@@ -64,7 +74,7 @@ export default function Home() {
                         <br /> I am a Full Stack Software Developer, Problem Solver. Also I am developing web/desktop
                         games just for fun and experience, but the most important one...a person with humor :)
                     </div>
-                    <div>
+                    <div className="pfp-container">
                         <Image
                             className="profile-image"
                             src={IMAGES.pfp}
