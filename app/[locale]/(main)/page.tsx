@@ -61,7 +61,7 @@ export default function Home() {
                         data-aos-duration="1000"
                     >
                         Hello, My name is <b>Sargis</b>
-                        <br /> I am a Full Stack Software Develoer, Problem Solver. Also I am developing web/desktop
+                        <br /> I am a Full Stack Software Developer, Problem Solver. Also I am developing web/desktop
                         games just for fun and experience, but the most important one...a person with humor :)
                     </div>
                     <div>

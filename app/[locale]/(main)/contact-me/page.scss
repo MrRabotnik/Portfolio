@@ -1,0 +1,53 @@
+.contact-me-section {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+
+    .contact-me-modal {
+        width: 40%;
+        height: 80%;
+
+        .form {
+            .label-input-container {
+                margin: 10px 0;
+
+                label {
+                    display: block;
+                    margin-bottom: 10px;
+                }
+
+                input {
+                    width: 100%;
+                    border-radius: 20px;
+                    outline: none;
+                    padding: 10px 20px;
+                }
+
+                textarea {
+                    width: 100%;
+                    border-radius: 20px;
+                    outline: none;
+                    padding: 10px 20px;
+                    resize: none;
+                    min-height: 100px;
+                    font-family: inherit;
+                }
+            }
+
+            .submit-mail-btn-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 10px 0;
+
+                button {
+                    padding: 10px 15px;
+                    outline: none;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+}
