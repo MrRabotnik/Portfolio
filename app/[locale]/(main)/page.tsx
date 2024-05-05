@@ -168,7 +168,12 @@ export default function Home() {
                             </div>
 
                             <button className="view-preview">
-                                <a href={previewingProject.link}>Preview</a>
+                                <a
+                                    href={previewingProject.link}
+                                    target="_blank"
+                                >
+                                    Preview
+                                </a>
                             </button>
                         </div>
                     </div>

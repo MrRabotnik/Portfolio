@@ -51,6 +51,7 @@ const Header = () => {
                             onClick={() => {
                                 setMobileMenuOpen(false);
                             }}
+                            target="_blank"
                         >
                             Download CV
                         </Link>
@@ -83,7 +84,12 @@ const Header = () => {
                             <Link href={`/${localActive}/projects`}>My Projects</Link>
                         </div>
                         <div className="navigation-links">
-                            <Link href={`/Resume.pdf`}>Download CV</Link>
+                            <Link
+                                href={`/Resume.pdf`}
+                                target="_blank"
+                            >
+                                Download CV
+                            </Link>
                         </div>
                         <div className="navigation-links last-link">
                             <Link
