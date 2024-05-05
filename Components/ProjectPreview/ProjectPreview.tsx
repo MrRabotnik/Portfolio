@@ -9,7 +9,7 @@ const ProjectPreview = ({ project }: any) => {
             <div className="project_box">
                 <div className="project_title_container">{project.name}</div>
                 <img
-                    src={project.preview.src}
+                    src={project.previewImage}
                     width="100%"
                     height="106%"
                 />
@@ -19,7 +19,7 @@ const ProjectPreview = ({ project }: any) => {
                     Creation Time | <span>{project.creationTime}</span>
                 </h3>
                 <h3>
-                    Technologies Used | <span>{project.technologiesUsed}</span>
+                    Technologies Used | <span>{project.technologies}</span>
                 </h3>
                 <h3>
                     Category | <span>{project.category}</span>

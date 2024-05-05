@@ -7,32 +7,37 @@
     perspective: 500px;
     transition: 1s;
     position: relative;
-}
-.all_projects_container:hover {
-    width: 85%;
-    height: 20vw;
-}
-.all_projects_container:hover .title {
-    display: none;
-}
-.all_projects_container:hover .project_box {
-    transition: 0.7s;
-    transform: rotateY(0deg);
-    border-radius: 5vw 0 0 5vw;
-    box-shadow: none;
-}
-.all_projects_container:hover .project_box img {
-    transition: 0.7s;
-    border-radius: 5vw 0 0 5vw;
+
+    &:hover {
+        width: 85%;
+        height: 20vw;
+    }
+
+    &:hover .title {
+        display: none;
+    }
+
+    &:hover .project_box {
+        transition: 0.7s;
+        transform: rotateY(0deg);
+        border-radius: 5vw 0 0 5vw;
+        box-shadow: none;
+    }
+
+    &:hover .project_box img {
+        transition: 0.7s;
+        border-radius: 5vw 0 0 5vw;
+    }
+
+    &:hover .description_box {
+        transform: rotateY(0deg);
+        transition: 0.5s;
+        opacity: 1;
+        border-radius: 0 5vw 5vw 0;
+        font-size: 1.4vw;
+    }
 }
 
-.all_projects_container:hover .description_box {
-    transform: rotateY(0deg);
-    transition: 0.5s;
-    opacity: 1;
-    border-radius: 0 5vw 5vw 0;
-    font-size: 1.4vw;
-}
 .project_box {
     width: 50%;
     transform-origin: 0 50%;
@@ -42,10 +47,11 @@
     position: relative;
     transform: rotateX(20deg);
     box-shadow: 0 0 2vw;
+    &:hover .project_title_container {
+        display: flex;
+    }
 }
-.project_box:hover .project_title_container {
-    display: flex;
-}
+
 .project_title_container {
     width: 100%;
     height: 100%;
@@ -60,6 +66,7 @@
     color: white;
     letter-spacing: 0.05em;
 }
+
 .description_box {
     width: 50%;
     transform-origin: 100% 50%;
@@ -71,36 +78,41 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+    h3 {
+        padding-left: 10%;
+        margin: 1%;
+        height: 20%;
+        font-size: 1.4vw !important;
+    }
+
+    span {
+        color: coral;
+    }
 }
-.description_box h3 {
-    padding-left: 10%;
-    margin: 1%;
-    height: 20%;
-    font-size: 1.4vw !important;
-}
-.description_box span {
-    color: coral;
-}
+
 .preview_btn {
     width: 20%;
     display: block;
     margin: 0 auto;
     height: 2.5vw;
     background: rgb(6, 86, 6);
+    button {
+        width: 100%;
+        padding: 5% 0;
+        background: rgb(6, 86, 6);
+        color: white;
+        outline: none;
+        cursor: pointer;
+        border: 0;
+        font-size: 1.5vw;
+
+        &:hover {
+            background: rgb(7, 52, 7);
+        }
+    }
 }
-.preview_btn button {
-    width: 100%;
-    padding: 5% 0;
-    background: rgb(6, 86, 6);
-    color: white;
-    outline: none;
-    cursor: pointer;
-    border: 0;
-    font-size: 1.5vw;
-}
-.preview_btn button:hover {
-    background: rgb(7, 52, 7);
-}
+
 .title {
     position: absolute;
     top: 50%;
