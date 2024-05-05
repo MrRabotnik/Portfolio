@@ -46,8 +46,8 @@ const Header = () => {
                     </div>
                     <div className="navigation-links">
                         <Link
-                            href={`../../public/Resume.pdf`}
-                            download={`../../public/Resume.pdf`}
+                            href={`/Resume.pdf`}
+                            download={`/Resume.pdf`}
                             onClick={() => {
                                 setMobileMenuOpen(false);
                             }}
@@ -83,7 +83,7 @@ const Header = () => {
                             <Link href={`/${localActive}/projects`}>My Projects</Link>
                         </div>
                         <div className="navigation-links">
-                            <Link href={`../../Resume.pdf`}>Download CV</Link>
+                            <Link href={`/Resume.pdf`}>Download CV</Link>
                         </div>
                         <div className="navigation-links last-link">
                             <Link
