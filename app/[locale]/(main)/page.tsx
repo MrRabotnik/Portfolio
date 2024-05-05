@@ -8,6 +8,12 @@ import IMAGES from "../../../utils/images";
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import axios from "axios";
+import "react-loading-skeleton/dist/skeleton.css";
+import dynamic from "next/dynamic";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
+const Skeleton = dynamic(() => import("react-loading-skeleton"));
 
 export default function Home() {
     const localActive = useLocale();
@@ -28,7 +34,6 @@ export default function Home() {
                 setProjects(projectsArr);
 
                 const slicedArr = projectsArr.slice(itemOffSet, itemOffSet + itemCount);
-                console.log(slicedArr[2]);
                 setPreviewingProject(slicedArr[2]);
                 setLimitedProjects(slicedArr);
             })
@@ -39,12 +44,12 @@ export default function Home() {
 
     const previousProject = () => {
         setItemOffSet((prev) => prev - 1);
-        setLimitedProjects(projects.slice(itemOffSet - 1, (itemOffSet - 1) + 5));
+        setLimitedProjects(projects.slice(itemOffSet - 1, itemOffSet - 1 + 5));
     };
 
     const nextProject = () => {
         setItemOffSet((prev) => prev + 1);
-        setLimitedProjects(projects.slice(itemOffSet + 1, (itemOffSet + 1) + 5));
+        setLimitedProjects(projects.slice(itemOffSet + 1, itemOffSet + 1 + 5));
     };
 
     return (
@@ -59,10 +64,7 @@ export default function Home() {
                     <br /> I am a Web Develoer and Designer,Problem Solver, also I am developing games just for fun and
                     experience, but the most important one...a person with humor :)
                 </div>
-                <div
-                    data-aos="fade-left"
-                    data-aos-duration="1000"
-                >
+                <div>
                     <Image
                         className="profile-image"
                         src={IMAGES.pfp}
@@ -89,11 +91,7 @@ export default function Home() {
                                 className="left-arrow-container"
                                 onClick={previousProject}
                             >
-                                <Image
-                                    src={IMAGES.leftArrow}
-                                    alt="Left Arrow"
-                                    priority
-                                />
+                                <FontAwesomeIcon icon={faArrowLeft} />
                             </div>
                             <div className="preview-img-box">
                                 <Image
@@ -109,35 +107,41 @@ export default function Home() {
                                 className="right-arrow-container"
                                 onClick={nextProject}
                             >
-                                <Image
-                                    src={IMAGES.leftArrow}
-                                    alt="Left Arrow"
-                                    priority
-                                />
+                                <FontAwesomeIcon icon={faArrowRight} />
                             </div>
                         </div>
                     ) : (
-                        ""
+                        <Skeleton
+                            highlightColor="#438a5e"
+                            containerClassName="project-preview-box-skeleton"
+                        />
                     )}
 
                     {projects.length ? (
-                        <div className="project-information project-information1">
+                        <div className="project-information">
                             <h3 className="project-title">{projects[itemOffSet + 2].name}</h3>
-                            <h4>
-                                Creation Time | <span>{projects[itemOffSet + 2].creationTime}</span>{" "}
-                            </h4>
-                            <h4>
-                                Technologies Used | <span>{projects[itemOffSet + 2].technologies}</span>
-                            </h4>
-                            <h4>
-                                Category | <span>{projects[itemOffSet + 2].category}</span>
-                            </h4>
+                            <div>
+                                <h4>
+                                    Creation Time | <span>{projects[itemOffSet + 2].creationTime}</span>{" "}
+                                </h4>
+                                <h4>
+                                    Technologies Used | <span>{projects[itemOffSet + 2].technologies}</span>
+                                </h4>
+                                <h4>
+                                    Category | <span>{projects[itemOffSet + 2].category}</span>
+                                </h4>
+                            </div>
+
                             <button className="view-preview">
                                 <a href={projects[itemOffSet + 2].link}>Preview</a>
                             </button>
                         </div>
                     ) : (
-                        ""
+                        <Skeleton
+                            style={{ height: "100%" }}
+                            highlightColor="#438a5e"
+                            containerClassName="project-info-box-skeleton"
+                        />
                     )}
                 </div>
 
@@ -151,8 +155,7 @@ export default function Home() {
                               return (
                                   <div
                                       key={index}
-                                      className={`project-boxes`}
-                                      id={`box-${index + 1}`}
+                                      className={`project-boxes box-${index + 1}`}
                                   >
                                       <Image
                                           width={100}
@@ -163,7 +166,16 @@ export default function Home() {
                                   </div>
                               );
                           })
-                        : ""}
+                        : [1, 2, 3, 4, 5].map((index) => {
+                              return (
+                                  <Skeleton
+                                      key={index}
+                                      style={{ height: "100%" }}
+                                      highlightColor="#438a5e"
+                                      containerClassName={`project-boxes box-${index} project-preview-slider-skeleton`}
+                                  />
+                              );
+                          })}
                 </div>
 
                 <div className="view-all-projects-container">
