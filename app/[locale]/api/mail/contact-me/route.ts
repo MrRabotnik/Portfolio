@@ -7,6 +7,10 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, subject, message } = body;
 
+    if (!name.length || !email.length || !subject.length || !message.length) {
+        return;
+    }
+
     const transport = nodemailer.createTransport({
         service: "gmail",
         port: 587,
