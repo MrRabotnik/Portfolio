@@ -17,7 +17,7 @@ export default function Home() {
 
     const itemCount = 5;
 
-    const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState<any>([]);
     const [limitedProjects, setLimitedProjects] = useState([]);
 
     useEffect(() => {
@@ -28,13 +28,24 @@ export default function Home() {
                 setProjects(projectsArr);
 
                 const slicedArr = projectsArr.slice(itemOffSet, itemOffSet + itemCount);
-                setPreviewingProject(slicedArr[0]);
+                console.log(slicedArr[2]);
+                setPreviewingProject(slicedArr[2]);
                 setLimitedProjects(slicedArr);
             })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
+
+    const previousProject = () => {
+        setItemOffSet((prev) => prev - 1);
+        setLimitedProjects(projects.slice(itemOffSet - 1, (itemOffSet - 1) + 5));
+    };
+
+    const nextProject = () => {
+        setItemOffSet((prev) => prev + 1);
+        setLimitedProjects(projects.slice(itemOffSet + 1, (itemOffSet + 1) + 5));
+    };
 
     return (
         <main>
@@ -68,50 +79,61 @@ export default function Home() {
 
             <section className="my-projects-section">
                 <div className="my-projects-information-container">
-                    <div
-                        className="preview-box"
-                        data-aos="fade-right"
-                        data-aos-duration="1000"
-                    >
-                        <div className="left-arrow-container">
-                            <Image
-                                src={IMAGES.leftArrow}
-                                alt="Left Arrow"
-                                priority
-                            />
-                        </div>
+                    {projects.length ? (
+                        <div
+                            className="preview-box"
+                            data-aos="fade-right"
+                            data-aos-duration="1000"
+                        >
+                            <div
+                                className="left-arrow-container"
+                                onClick={previousProject}
+                            >
+                                <Image
+                                    src={IMAGES.leftArrow}
+                                    alt="Left Arrow"
+                                    priority
+                                />
+                            </div>
+                            <div className="preview-img-box">
+                                <Image
+                                    width={100}
+                                    height={100}
+                                    src={projects[itemOffSet + 2].previewImage}
+                                    alt="Project"
+                                    priority
+                                />
+                            </div>
 
-                        <div className="preview-img-box">
-                            <Image
-                                src={IMAGES.screenshot1}
-                                alt="Project"
-                                priority
-                            />
+                            <div
+                                className="right-arrow-container"
+                                onClick={nextProject}
+                            >
+                                <Image
+                                    src={IMAGES.leftArrow}
+                                    alt="Left Arrow"
+                                    priority
+                                />
+                            </div>
                         </div>
+                    ) : (
+                        ""
+                    )}
 
-                        <div className="right-arrow-container">
-                            <Image
-                                src={IMAGES.leftArrow}
-                                alt="Left Arrow"
-                                priority
-                            />
-                        </div>
-                    </div>
-
-                    {previewingProject.length ? (
+                    {projects.length ? (
                         <div className="project-information project-information1">
-                            <h3 className="project-title">{previewingProject.name}</h3>
+                            <h3 className="project-title">{projects[itemOffSet + 2].name}</h3>
                             <h4>
-                                Creation Time | <span>{previewingProject.creationTime}</span>{" "}
+                                Creation Time | <span>{projects[itemOffSet + 2].creationTime}</span>{" "}
                             </h4>
                             <h4>
-                                Technologies Used | <span>{previewingProject.technologies}</span>
+                                Technologies Used | <span>{projects[itemOffSet + 2].technologies}</span>
                             </h4>
                             <h4>
-                                Category | <span>{previewingProject.category}</span>
+                                Category | <span>{projects[itemOffSet + 2].category}</span>
                             </h4>
                             <button className="view-preview">
-                                <a href={previewingProject.link}>Preview</a>
+                                <a href={projects[itemOffSet + 2].link}>Preview</a>
                             </button>
                         </div>
                     ) : (
