@@ -12,6 +12,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import projectsJSON from "../../../My-Portfolio.projects";
 
 const Skeleton = dynamic(() => import("react-loading-skeleton"));
 
@@ -19,43 +20,110 @@ export default function Home() {
     const localActive = useLocale();
 
     const [itemOffSet, setItemOffSet] = useState(0);
+    const [sliderMid, setSliderMid] = useState(2);
     const itemCount = 5;
 
-    const [projects, setProjects] = useState<any>([]);
+    const [projects, setProjects] = useState<any>(projectsJSON);
     const [previewingProject, setPreviewingProject] = useState<any>({});
-    const [limitedProjects, setLimitedProjects] = useState([]);
+    const [limitedProjects, setLimitedProjects] = useState<any>([]);
+
+    // useEffect(() => {
+    //     axios
+    //         .get(`/${localActive}/api/project/all`)
+    //         .then((res) => {
+    //             const projectsArr = res.data.projects;
+    //             setProjects(projectsArr);
+
+    //             const slicedArr = projectsArr.slice(itemOffSet, itemOffSet + itemCount);
+    //             setPreviewingProject(slicedArr[2]);
+    //             setLimitedProjects(slicedArr);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }, []);
 
     useEffect(() => {
-        axios
-            .get(`/${localActive}/api/project/all`)
-            .then((res) => {
-                const projectsArr = res.data.projects;
-                setProjects(projectsArr);
-
-                const slicedArr = projectsArr.slice(itemOffSet, itemOffSet + itemCount);
-                setPreviewingProject(slicedArr[2]);
-                setLimitedProjects(slicedArr);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if (!projects.length) return;
+        const slicedArr: any = projectsJSON.slice(itemOffSet, itemOffSet + itemCount);
+        setPreviewingProject(slicedArr[sliderMid]);
+        setLimitedProjects(slicedArr);
     }, []);
 
     const previousProject = () => {
-        if (itemOffSet === 0) {
-            // setItemOffSet(projects.length - 1);
+        if (sliderMid === 0) {
+            setSliderMid(projects.length - 1);
+            setItemOffSet(projects.length - 1);
+            setLimitedProjects([...projects.slice(projects.length - 3, projects.length), projects[0], projects[1]]);
+            setPreviewingProject(projects[projects.length - 1]);
+            return;
+        } else if (sliderMid === 1) {
+            setSliderMid(0);
+            setItemOffSet(0);
+            setLimitedProjects([projects[projects.length - 2], projects[projects.length - 1], ...projects.slice(0, 3)]);
+            setPreviewingProject(projects[0]);
+            return;
+        } else if (sliderMid === 2) {
+            setSliderMid(1);
+            setItemOffSet(1);
+            setLimitedProjects([projects[projects.length - 1], ...projects.slice(0, 4)]);
+            setPreviewingProject(projects[1]);
+            return;
+        } else if (sliderMid === projects.length - 1) {
+            setSliderMid(19);
+            setItemOffSet(17);
+            setLimitedProjects([...projects.slice(projects.length - 4, projects.length), projects[0]]);
+            setPreviewingProject(projects[projects.length - 2]);
+            return;
+        } else if (sliderMid === projects.length - 2) {
+            setSliderMid(18);
+            setItemOffSet(16);
+            setLimitedProjects(projects.slice(projects.length - 5, projects.length));
+            setPreviewingProject(projects[projects.length - 3]);
             return;
         }
+
+        setSliderMid((prev) => prev - 1);
         setItemOffSet((prev) => prev - 1);
         setLimitedProjects(projects.slice(itemOffSet - 1, itemOffSet - 1 + 5));
         setPreviewingProject(projects[itemOffSet + 1]);
     };
 
     const nextProject = () => {
-        if (itemOffSet === projects.length - 1) {
-            // setItemOffSet(0);
+        if (sliderMid === projects.length - 1) {
+            setSliderMid(0);
+            setItemOffSet(0);
+            setLimitedProjects([projects[projects.length - 2], projects[projects.length - 1], ...projects.slice(0, 3)]);
+            setPreviewingProject(projects[0]);
+            return;
+        } else if (sliderMid === 0) {
+            setSliderMid(1);
+            setItemOffSet(1);
+            setLimitedProjects([projects[projects.length - 1], ...projects.slice(0, 4)]);
+            setPreviewingProject(projects[1]);
+            return;
+        } else if (sliderMid === projects.length - 3) {
+            setSliderMid((prev) => prev + 1);
+            setItemOffSet((prev) => prev + 1);
+            setLimitedProjects([...projects.slice(projects.length - 4, projects.length), projects[0]]);
+            setPreviewingProject(projects[projects.length - 2]);
+            return;
+        } else if (sliderMid === projects.length - 2) {
+            setSliderMid((prev) => prev + 1);
+            setItemOffSet((prev) => prev + 1);
+            setLimitedProjects([...projects.slice(projects.length - 3, projects.length), projects[0], projects[1]]);
+            setPreviewingProject(projects[projects.length - 1]);
+            return;
+        } else if (sliderMid === 1) {
+            setSliderMid(2);
+            setItemOffSet(0);
+            setLimitedProjects(projects.slice(0, 5));
+            setPreviewingProject(projects[2]);
             return;
         }
+
+        setSliderMid((prev) => prev + 1);
+
         setItemOffSet((prev) => prev + 1);
         setLimitedProjects(projects.slice(itemOffSet + 1, itemOffSet + 1 + 5));
         setPreviewingProject(projects[itemOffSet + 3]);
@@ -93,7 +161,7 @@ export default function Home() {
             <section className="my-projects-section">
                 <div className="container">
                     <div className="my-projects-information-container">
-                        {projects.length ? (
+                        {previewingProject?.previewImage?.length ? (
                             <div
                                 className="preview-box"
                                 data-aos="fade-right"
@@ -109,7 +177,7 @@ export default function Home() {
                                     <Image
                                         width={100}
                                         height={100}
-                                        src={projects[itemOffSet + 2].previewImage}
+                                        src={previewingProject?.previewImage}
                                         alt="Project"
                                         priority
                                     />
@@ -129,53 +197,57 @@ export default function Home() {
                             />
                         )}
 
-                        <div className="project-information">
-                            <h3 className="project-title">{previewingProject.name}</h3>
-                            <div>
-                                <h4>
-                                    Creation Time |{" "}
-                                    {Object.keys(previewingProject).length ? (
-                                        <span>{previewingProject.creationTime}</span>
-                                    ) : (
-                                        <Skeleton
-                                            highlightColor="#96bb7c"
-                                            containerClassName="project-info-box-skeleton"
-                                        />
-                                    )}
-                                </h4>
-                                <h4>
-                                    Technologies Used |{" "}
-                                    {Object.keys(previewingProject).length ? (
-                                        <span>{previewingProject.technologies}</span>
-                                    ) : (
-                                        <Skeleton
-                                            highlightColor="#96bb7c"
-                                            containerClassName="project-info-box-skeleton"
-                                        />
-                                    )}
-                                </h4>
-                                <h4>
-                                    Category |{" "}
-                                    {Object.keys(previewingProject).length ? (
-                                        <span>{previewingProject.category}</span>
-                                    ) : (
-                                        <Skeleton
-                                            highlightColor="#96bb7c"
-                                            containerClassName="project-info-box-skeleton"
-                                        />
-                                    )}
-                                </h4>
-                            </div>
+                        {previewingProject ? (
+                            <div className="project-information">
+                                <h3 className="project-title">{previewingProject?.name}</h3>
+                                <div>
+                                    <h4>
+                                        Creation Time |{" "}
+                                        {Object.keys(previewingProject).length ? (
+                                            <span>{previewingProject?.creationTime}</span>
+                                        ) : (
+                                            <Skeleton
+                                                highlightColor="#96bb7c"
+                                                containerClassName="project-info-box-skeleton"
+                                            />
+                                        )}
+                                    </h4>
+                                    <h4>
+                                        Technologies Used |{" "}
+                                        {Object.keys(previewingProject).length ? (
+                                            <span>{previewingProject?.technologies}</span>
+                                        ) : (
+                                            <Skeleton
+                                                highlightColor="#96bb7c"
+                                                containerClassName="project-info-box-skeleton"
+                                            />
+                                        )}
+                                    </h4>
+                                    <h4>
+                                        Category |{" "}
+                                        {Object.keys(previewingProject).length ? (
+                                            <span>{previewingProject?.category}</span>
+                                        ) : (
+                                            <Skeleton
+                                                highlightColor="#96bb7c"
+                                                containerClassName="project-info-box-skeleton"
+                                            />
+                                        )}
+                                    </h4>
+                                </div>
 
-                            <button className="view-preview">
-                                <a
-                                    href={previewingProject.link}
-                                    target="_blank"
-                                >
-                                    Preview
-                                </a>
-                            </button>
-                        </div>
+                                <button className="view-preview">
+                                    <a
+                                        href={previewingProject?.link}
+                                        target="_blank"
+                                    >
+                                        Preview
+                                    </a>
+                                </button>
+                            </div>
+                        ) : (
+                            ""
+                        )}
                     </div>
 
                     <div
